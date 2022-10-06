@@ -12,28 +12,32 @@ mod_three_ui <- function(id, basepath) {
 	fluidPage(
 		htmlTemplate(
 			app_sys("app/www/arrows.html"),
+			home = sprintf(
+				"/%s",
+				basepath
+			),
 			none = sprintf(
-				"/%s/none", 
+				"/%s/none",
 				basepath
 			) %>% gsub("//", "/", .),
 			one = sprintf(
-				"/%s/one", 
+				"/%s/one",
 				basepath
 			) %>% gsub("//", "/", .),
 			two = sprintf(
-				"/%s/two", 
+				"/%s/two",
 				basepath
 			) %>% gsub("//", "/", .),
 			three = sprintf(
-				"/%s/three", 
+				"/%s/three",
 				basepath
 			) %>% gsub("//", "/", .),
 			four = sprintf(
-				"/%s/four", 
+				"/%s/four",
 				basepath
 			) %>% gsub("//", "/", .),
 			about = sprintf(
-				"/%s/about", 
+				"/%s/about",
 				basepath
 			) %>% gsub("//", "/", .),
 			# add here other template arguments
