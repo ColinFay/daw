@@ -7,9 +7,37 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_four_ui <- function(id) {
+mod_four_ui <- function(id, basepath) {
 	ns <- NS(id)
 	fluidPage(
+		htmlTemplate(
+			app_sys("app/www/arrows.html"),
+			none = sprintf(
+				"/%s/none", 
+				basepath
+			) %>% gsub("//", "/", .),
+			one = sprintf(
+				"/%s/one", 
+				basepath
+			) %>% gsub("//", "/", .),
+			two = sprintf(
+				"/%s/two", 
+				basepath
+			) %>% gsub("//", "/", .),
+			three = sprintf(
+				"/%s/three", 
+				basepath
+			) %>% gsub("//", "/", .),
+			four = sprintf(
+				"/%s/four", 
+				basepath
+			) %>% gsub("//", "/", .),
+			about = sprintf(
+				"/%s/about", 
+				basepath
+			) %>% gsub("//", "/", .),
+			# add here other template arguments
+		),
 		fluidRow(
 			h1("Belle Ile en trail")
 		),
@@ -82,10 +110,10 @@ mod_four_server <- function(id) {
 #'
 #' @noRd
 #' @importFrom brochure page
-four <- function(id = "four", href = "/four") {
+four <- function(id = "four", href = "/four", basepath) {
 	page(
 		href = href,
-		ui = mod_four_ui(id = id),
+		ui = mod_four_ui(id = id, basepath = basepath),
 		server = function(input, output, session) {
 			mod_four_server(id = id)
 		}

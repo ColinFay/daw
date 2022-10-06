@@ -9,38 +9,68 @@
 #' @importFrom shiny NS tagList
 mod_simple_ui <- function(
 	id,
-	firstOutput = tableOutput
+	basepath
 ) {
 	ns <- NS(id)
-	fluidPage(
-		fluidRow(
-			h1("Belle Ile en trail")
+	tagList(
+		htmlTemplate(
+			app_sys("app/www/arrows.html"),
+			none = sprintf(
+				"/%s/none", 
+				basepath
+			) %>% gsub("//", "/", .),
+			one = sprintf(
+				"/%s/one", 
+				basepath
+			) %>% gsub("//", "/", .),
+			two = sprintf(
+				"/%s/two", 
+				basepath
+			) %>% gsub("//", "/", .),
+			three = sprintf(
+				"/%s/three", 
+				basepath
+			) %>% gsub("//", "/", .),
+			four = sprintf(
+				"/%s/four", 
+				basepath
+			) %>% gsub("//", "/", .),
+			about = sprintf(
+				"/%s/about", 
+				basepath
+			) %>% gsub("//", "/", .),
+			# add here other template arguments
 		),
-		fluidRow(
-			column(
-				6,
-				firstOutput(
-					ns("tbl")
+		fluidPage(
+			fluidRow(
+				h1("Belle Ile en trail")
+			),
+			fluidRow(
+				column(
+					6,
+					tableOutput(
+						ns("tbl")
+					)
+				),
+				column(
+					6,
+					plotOutput(
+						ns("plot")
+					)
 				)
 			),
-			column(
-				6,
-				plotOutput(
-					ns("plot")
-				)
-			)
-		),
-		fluidRow(
-			column(
-				6,
-				plotOutput(
-					ns("eleplot")
-				)
-			),
-			column(
-				6,
-				plotOutput(
-					ns("lapplot")
+			fluidRow(
+				column(
+					6,
+					plotOutput(
+						ns("eleplot")
+					)
+				),
+				column(
+					6,
+					plotOutput(
+						ns("lapplot")
+					)
 				)
 			)
 		)
@@ -52,12 +82,11 @@ mod_simple_ui <- function(
 #' @import ggplot2
 #' @noRd
 mod_simple_server <- function(
-	id,
-	firstRender = renderTable
+	id
 ) {
 	moduleServer(id, function(input, output, session) {
 		ns <- session$ns
-		output$tbl <- firstRender({
+		output$tbl <- renderTable({
 			laps_converted
 		})
 		output$plot <- renderPlot({
@@ -85,10 +114,10 @@ mod_simple_server <- function(
 #'
 #' @noRd
 #' @importFrom brochure page
-simple <- function(id = "simple", href = "/none") {
+simple <- function(id = "simple", href = "/none", basepath) {
 	page(
 		href = href,
-		ui = mod_simple_ui(id = id),
+		ui = mod_simple_ui(id = id, basepath = basepath),
 		server = function(input, output, session) {
 			mod_simple_server(id = id)
 		}

@@ -7,41 +7,36 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_home_ui <- function(id) {
+mod_home_ui <- function(id, basepath) {
 	ns <- NS(id)
-	tagList(
-		h1("DESTROY ALL WIDGETS!"),
-		tags$ul(
-			tags$li(
-				tags$a(
-					"No widget",
-					href = "/none"
-				)
-			),
-			tags$li(
-				tags$a(
-					"One widget",
-					href = "/one"
-				)
-			),
-			tags$li(
-				tags$a(
-					"Two widgets",
-					href = "/two"
-				)
-			),
-			tags$li(
-				tags$a(
-					"Three widgets",
-					href = "/three"
-				)
-			),
-			tags$li(
-				tags$a(
-					"Four widgets",
-					href = "/four"
-				)
-			)
+	fluidPage(
+		htmlTemplate(
+			app_sys("app/www/template.html"),
+			none = sprintf(
+				"/%s/none", 
+				basepath
+			) %>% gsub("//", "/", .),
+			one = sprintf(
+				"/%s/one", 
+				basepath
+			) %>% gsub("//", "/", .),
+			two = sprintf(
+				"/%s/two", 
+				basepath
+			) %>% gsub("//", "/", .),
+			three = sprintf(
+				"/%s/three", 
+				basepath
+			) %>% gsub("//", "/", .),
+			four = sprintf(
+				"/%s/four", 
+				basepath
+			) %>% gsub("//", "/", .),
+			about = sprintf(
+				"/%s/about", 
+				basepath
+			) %>% gsub("//", "/", .),
+			# add here other template arguments
 		)
 	)
 }
@@ -59,10 +54,10 @@ mod_home_server <- function(id) {
 #'
 #' @noRd
 #' @importFrom brochure page
-home <- function(id = "home", href = "/") {
+home <- function(id = "home", href = "/", basepath) {
 	page(
 		href = href,
-		ui = mod_home_ui(id = id),
+		ui = mod_home_ui(id = id, basepath = basepath),
 		server = function(input, output, session) {
 			mod_home_server(id = id)
 		}

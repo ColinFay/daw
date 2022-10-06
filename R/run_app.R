@@ -19,12 +19,13 @@ run_app <- function(
 		app = brochureApp(
 			# Putting the resources here
 			golem_add_external_resources(),
-			home(),
-			simple(),
-			one(),
-			two(),
-			three(),
-			four(),
+			home(basepath = basepath),
+			simple(basepath = basepath),
+			one(basepath = basepath),
+			two(basepath = basepath),
+			three(basepath = basepath),
+			four(basepath = basepath),
+			about(basepath = basepath),
 			onStart = onStart,
 			options = options,
 			enableBookmarking = enableBookmarking,
@@ -32,9 +33,11 @@ run_app <- function(
 			basepath = basepath,
 			req_handlers = list(),
 			res_handlers = list(),
-			wrapped = shiny::fluidPage
+			wrapped = shiny::tagList
 		),
-		golem_opts = list(...)
+		golem_opts = list(
+			...
+		)
 	)
 }
 
