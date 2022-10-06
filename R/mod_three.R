@@ -12,7 +12,7 @@ mod_three_ui <- function(id, basepath) {
 	tagList(
 		menu_builder(
 			basepath
-		),,
+		),
 		fluidPage(
 			fluidRow(
 			h1("Belle Ile en trail")
