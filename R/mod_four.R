@@ -9,7 +9,7 @@
 #' @importFrom shiny NS tagList
 mod_four_ui <- function(id, basepath) {
 	ns <- NS(id)
-	fluidPage(
+	tagList(
 		htmlTemplate(
 			app_sys("app/www/arrows.html"),
 			home = sprintf(
@@ -42,7 +42,8 @@ mod_four_ui <- function(id, basepath) {
 			) %>% gsub("//", "/", .),
 			# add here other template arguments
 		),
-		fluidRow(
+		fluidPage(
+			fluidRow(
 			h1("Belle Ile en trail")
 		),
 		fluidRow(
@@ -72,6 +73,7 @@ mod_four_ui <- function(id, basepath) {
 					ns("lapplot")
 				)
 			)
+		)
 		)
 	)
 }
