@@ -9,7 +9,7 @@
 #' @importFrom shiny NS tagList
 mod_home_ui <- function(id, basepath) {
 	ns <- NS(id)
-	tagList(
+	fluidPage(
 		htmlTemplate(
 			app_sys("app/www/template.html"),
 			
