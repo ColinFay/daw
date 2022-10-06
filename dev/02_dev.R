@@ -24,6 +24,7 @@ golem::add_module(name = "one", with_test = TRUE, module_template = brochure::ne
 golem::add_module(name = "two", with_test = TRUE, module_template = brochure::new_page) # Name of the module
 golem::add_module(name = "three", with_test = TRUE, module_template = brochure::new_page) # Name of the module
 golem::add_module(name = "four", with_test = TRUE, module_template = brochure::new_page) # Name of the module
+golem::add_module(name = "about", with_test = TRUE, module_template = brochure::new_page) # Name of the module
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
