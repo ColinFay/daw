@@ -17,7 +17,6 @@ run_app <- function(
 ) {
 	with_golem_options(
 		app = brochureApp(
-			basepath = basepath,
 			# Putting the resources here
 			golem_add_external_resources(),
 			home(),
@@ -30,7 +29,7 @@ run_app <- function(
 			options = options,
 			enableBookmarking = enableBookmarking,
 			content_404 = "Not found",
-			basepath = "",
+			basepath = basepath,
 			req_handlers = list(),
 			res_handlers = list(),
 			wrapped = shiny::fluidPage
