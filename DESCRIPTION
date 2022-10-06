@@ -12,11 +12,12 @@ Imports:
     DT,
     dygraphs,
     ggplot2,
-    golem (>= 0.3.2.9004),
+    golem (>= 0.3.2),
     leaflet,
     magrittr,
     pkgload,
     plotly,
+    sf,
     shiny (>= 1.7.1)
 Suggests: 
     testthat (>= 3.0.0)
