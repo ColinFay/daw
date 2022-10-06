@@ -4,7 +4,13 @@
 \alias{run_app}
 \title{Run the Shiny Application}
 \usage{
-run_app(onStart = NULL, options = list(), enableBookmarking = NULL, ...)
+run_app(
+  onStart = NULL,
+  options = list(),
+  enableBookmarking = NULL,
+  ...,
+  basepath = ""
+)
 }
 \arguments{
 \item{onStart}{A function that will be called before the app is actually run.
@@ -24,6 +30,11 @@ for more information on bookmarking your app.}
 
 \item{...}{arguments to pass to golem_opts.
 See `?golem::get_golem_options` for more details.}
+
+\item{basepath}{The base path of your app. This pattern will be removed from the
+url, so that it matches the href of your \code{page()}. For example, it you have
+an app at \verb{http://connect.thinkr.fr/brochure/}, and your page is names \code{page1},
+use \code{basepath = "brochure"}}
 }
 \description{
 Run the Shiny Application
