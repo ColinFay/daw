@@ -12,10 +12,12 @@ run_app <- function(
 	onStart = NULL,
 	options = list(),
 	enableBookmarking = NULL,
-	...
+	...,
+	basepath = ""
 ) {
 	with_golem_options(
 		app = brochureApp(
+			basepath = basepath,
 			# Putting the resources here
 			golem_add_external_resources(),
 			home(),

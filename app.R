@@ -4,4 +4,4 @@
 
 pkgload::load_all(export_all = FALSE,helpers = FALSE,attach_testthat = FALSE)
 options( "golem.app.prod" = TRUE)
-daw::run_app() # add parameters here (if any)
+daw::run_app(basepath = "daw") # add parameters here (if any)
