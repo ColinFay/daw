@@ -1,6 +1,6 @@
 ## code to prepare `race` dataset goes here
 library(tidyverse)
-
+library(sf)
 dat <- sf::read_sf(
 	"data-raw/Belle_Ile_en_trail_Ultra_des_vagues.gpx",
 	layer = "track_points"
@@ -22,9 +22,9 @@ dist <- st_distance(
 ) %>%
 	units::set_units("km")
 
-distance <- c(0, cumsum(Roads_D213_pts_distances))
+distance <- c(0, cumsum(dist))
 
-dat <- dat %>% mutate(distance = c(0, cumsum(Roads_D213_pts_distances)))
+dat <- dat %>% mutate(distance = distance)
 
 
 dat <- dat %>%
@@ -61,7 +61,7 @@ laps %>%
 		rowid
 	) %>%
 	summarize(
-		time_in_minute = sum(total_elapsed_time)
+		time_in_sec = sum(total_elapsed_time)
 	) %>%
 	rename(
 		lap = rowid
